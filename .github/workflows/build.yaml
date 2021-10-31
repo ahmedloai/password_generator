@@ -44,4 +44,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build and run Image
       run: docker-compose up -d
+    - name: Show runnig images
+      run: docker ps -a
     
