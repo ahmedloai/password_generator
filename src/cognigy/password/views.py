@@ -24,6 +24,10 @@ class ApiGeneratePassword(viewsets.ModelViewSet):
     serializer_class = PasswordSerializer
 
     def genrate_password(self, request, *args, **kwargs):
+        if not request.data:
+            return Response({'detail': 'Bad request, please fill in all the required fields'},
+                            status=status.HTTP_400_BAD_REQUEST)
+                            
         if request.data.get('min_length') == '' or \
            request.data.get('special_char') == '' or \
            request.data.get('number_of_numbers') == '' or \
