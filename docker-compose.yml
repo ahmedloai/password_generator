@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+    api:
+        #restart: always 
+        build: .
+        container_name: api_password
+        #command: gunicorn src/cognigy/cognigy.wsgi:application --bind 0.0.0.0:8000
+        command: sh -c "python src/cognigy/manage.py collectstatic --no-input && 
+                    python src/cognigy/manage.py runserver 0.0.0.0:8000"
+        ports:
+          - 8000:8000
+        image: api_password
+        
