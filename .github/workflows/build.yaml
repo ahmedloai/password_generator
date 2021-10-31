@@ -3,10 +3,12 @@ name: Django CI
 on:
   push:
     branches: [ main ]
+    paths:
+      - "src/cognigy/**"
   pull_request:
     branches: [ main ]
-  paths:
-    - "src/cognigy/**"
+    paths:
+      - "src/cognigy/**"
 
 jobs:
   build:
