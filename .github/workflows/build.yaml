@@ -3,12 +3,12 @@ name: Django CI
 on:
   push:
     branches: [ main ]
-    paths:
-      - "src/cognigy/**"
+    #paths:
+    #  - "src/cognigy/**"
   pull_request:
     branches: [ main ]
-    paths:
-      - "src/cognigy/**"
+    #paths:
+    #  - "src/cognigy/**"
 
 jobs:
   build:
@@ -34,3 +34,14 @@ jobs:
       working-directory: src/cognigy
       run: |
         python manage.py test
+
+  image:
+    needs: build
+    name: Create and test image
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build and run Image
+      run: docker-compose up -d
+    
